@@ -10,7 +10,7 @@ class handler(BaseHTTPRequestHandler):
         url_components = parse.urlsplit(s)
         query_string_list = parse.parse_qsl(url_components.query)
         dic = dict(query_string_list)
-        print(f"the capital of {country} is {capital}")
+        print(f"the dic is: {dic}")
 
         if "word" in dic:
             url = "https://restcountries.com/v3.1/capital/{capital}"
