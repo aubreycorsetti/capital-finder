@@ -2,7 +2,6 @@ from http.server import BaseHTTPRequestHandler
 from urllib import parse
 import requests
 
-
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         s = self.path
@@ -14,7 +13,8 @@ class handler(BaseHTTPRequestHandler):
             url = "https://restcountries.com/v3.1/name/"
             r = requests.get(url + dic["country"])
             data = r.json()
-            capital = data[0]["capital"]
+            capital = data[0]["capital"][0]
+
             message = f"The capital of {dic['country']} is {str(capital)}"
 
         elif "capital" in dic:
@@ -22,6 +22,7 @@ class handler(BaseHTTPRequestHandler):
             r = requests.get(url + dic["capital"])
             data = r.json()
             country = data[0]["name"]["common"]
+
             message = f"{dic['capital']} is the capital of {str(country)}"
 
         else:
